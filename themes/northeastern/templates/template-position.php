@@ -93,7 +93,10 @@
 						    // ,ucwords(trim($fields['memorial_position_letter']))
 						    // ,(trim($fields['memorial_position_number']))
 						  //);
+
 					}
+
+					
 
 					// if meta query data (memorial_position_letter & memorial_position_number) equals data_let and data_num then i want to echo the permalink in the corresponding href.
 					// if($fields['memorial_position_letter']) == $data_let = $alphabet[floor( ($index) / $cols)]{
