@@ -1,0 +1,94 @@
+<?php
+include_once '../includes/imagettftextblur.php';
+//print_r($_GET);
+//die();
+   // //Set the Content Type
+   // header('Content-type: image/jpeg');
+   //
+   // // Create Image From Existing File
+   // $jpg_image = imagecreatefromjpeg('../img/blank-military-dog-tags.jpg');
+   //
+   // // Allocate A Color For The Text
+   // $black = imagecolorallocate($jpg_image, 0, 0, 0);
+   //
+   // // Set Path to Font File
+   // $font_path = '../.fonts/courier.ttf';
+   //
+   // // Set Text to Be Printed On Image
+   // $name = ucwords(trim($_GET['name']));
+   // $branch = ucwords(trim($_GET['branch']));
+   // $conflict = ucwords(trim($_GET['conflict']));
+   //
+   // // Print Text On Image
+   // imagettftext($jpg_image, 55, 0, 475, 400, $black, $font_path, $name);
+   // imagettftext($jpg_image, 55, 0, 475, 500, $black, $font_path, $branch);
+   // imagettftext($jpg_image, 55, 0, 475, 600, $black, $font_path, $conflict);
+   //
+   // // Send Image to Browser
+   // imagejpeg($jpg_image);
+   //
+   // // Clear Memory
+   // imagedestroy($jpg_image);
+
+
+   // Create a 300x100 image
+   $jpg_image = imagecreatefrompng('../img/dog-tag.png');
+
+   $font_size = 30;
+   $angle = 0;
+   $x = 277;//this should be +2 from $x_shadow
+   $x_shadow = 275;
+   // $white = imagecolorallocate($jpg_image, 0x50, 0x50, 0x50);
+   // $gray = imagecolorallocate($jpg_image, 0x94, 0x94, 0x94);
+   $white = imagecolorallocate($jpg_image, 0x55, 0x55, 0x55);//555555
+   $gray = imagecolorallocate($jpg_image, 0x22, 0x22, 0x22);//222222
+   $shadow = imagecolorallocatealpha($jpg_image, 85, 85, 85, 10);//555555
+   // courier fonts https://www.wfonts.com/search?kwd=Courier-Bold
+   // Path to our ttf font file
+   //$font_file = '../.fonts/courier.ttf'; //courier
+   //$font_file = '../.fonts/Courier-BoldRegular.ttf'; //courier bold regular
+   $font_file = '../.fonts/Courier-Normal-Regular.ttf'; //courier normal
+
+   // // Set Text to Be Printed On Image
+   $name = ucwords(($_GET['lastname'])) .',  '. ucwords(trim($_GET['firstname']));
+   $branch = ucwords(trim($_GET['branch']));
+   $conflict = ucwords(trim($_GET['conflict']));
+
+   $blur = 3;
+   //  // the shadow for "Shadow"
+   // imagettftext($jpg_image, 35, 0, 300, 200, $gray, $font_file, $name);
+   // // and the word itself
+   // imagettftext($jpg_image, 35, 0, 302, 201, $white, $font_file, $name);
+
+   // the shadow for "Shadow"
+  imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, 200, $shadow, $font_file, $name, $blur);
+  // and the word itself
+  //imagefilter($jpg_image, IMG_FILTER_GAUSSIAN_BLUR);
+  imagettftextblur($jpg_image, $font_size, $angle, $x, 201, $white, $font_file, $name);
+
+   // // the shadow for "Shadow"
+   // imagettftext($jpg_image, 35, 0, 300, 250, $gray, $font_file, $branch);
+   // // and the word itself
+   // imagettftext($jpg_image, 35, 0, 302, 251, $white, $font_file, $branch);
+
+   // the shadow for "Shadow"
+   imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, 250, $shadow, $font_file, $branch, $blur);
+   // and the word itself
+   imagettftextblur($jpg_image, $font_size, $angle, $x, 251, $white, $font_file, $branch);
+
+   // // the shadow for "Shadow"
+   // imagettftext($jpg_image, 35, 0, 300, 300, $gray, $font_file, $conflict);
+   // // and the word itself
+   // imagettftext($jpg_image, 35, 0, 302, 301, $white, $font_file, $conflict);
+
+   // the shadow for "Shadow"
+   imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, 300, $shadow, $font_file, $conflict, $blur);
+   // and the word itself
+   imagettftextblur($jpg_image, $font_size, $angle, $x, 301, $white, $font_file, $conflict);
+
+   // Output image to the browser
+   header('Content-Type: image/png');
+
+   imagepng($jpg_image);
+   imagedestroy($jpg_image);
+?>

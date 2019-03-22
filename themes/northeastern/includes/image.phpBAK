@@ -1,0 +1,33 @@
+<?php
+include_once '../includes/imagettftextblur.php';
+
+   //Set the Content Type
+   header('Content-type: image/jpeg');
+
+   // Create Image From Existing File
+   $jpg_image = imagecreatefromjpeg('../img/blank-military-dog-tags.jpg');
+
+   // Allocate A Color For The Text
+   $black = imagecolorallocate($jpg_image, 0, 0, 0);
+
+   // Set Path to Font File
+   $font_path = '../.fonts/courier.ttf';
+
+   // Set Text to Be Printed On Image
+   $name = ucwords(trim($_GET['name']));
+   $branch = ucwords(trim($_GET['branch']));
+   $conflict = ucwords(trim($_GET['conflict']));
+
+   // Print Text On Image
+   imagettftext($jpg_image, 55, 0, 475, 400, $black, $font_path, $name);
+   imagettftext($jpg_image, 55, 0, 475, 500, $black, $font_path, $branch);
+   imagettftext($jpg_image, 55, 0, 475, 600, $black, $font_path, $conflict);
+
+
+
+   // Send Image to Browser
+   imagejpeg($jpg_image);
+
+   // Clear Memory
+   imagedestroy($jpg_image);
+?>

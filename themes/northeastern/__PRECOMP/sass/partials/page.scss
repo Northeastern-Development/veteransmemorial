@@ -1,0 +1,230 @@
+/**
+ * partials/page
+ * ---
+ */
+ .column {float: left; padding: 10px; width: 100px; border: solid thin red; background-color: green; margin-right: 5px}
+     .box {width: 100%; height: 100px; background-color: white; margin-bottom: 5px; }
+
+
+main{
+  width: 100%;
+  margin: (nth($header-height,2) + $globalnav-height) 0 0 0;
+  flex: 1 0 auto;
+  & > section{
+    overflow: hidden;
+    width:100%;
+    position:relative;
+    & .ci__wrapper {
+      // display: flex;
+      // flex-direction: row;
+      // flex-wrap: nowrap;
+      width: nth($content-width,2);
+      padding: nth($gutter,4) 0 nth($gutter,4) 0;
+      margin:0 auto;
+      &-element {
+        height: auto;
+        margin: 0 0 0 0;
+        position: relative;
+        &-copy {
+          margin:0 0 0 0;
+          & h3 {
+            // margin-top:18px;
+            @include font-5b-l;
+          }
+          @media only screen and (max-width: nth($breakpoint,1)){
+            & h3 {
+              @include font-3b-l;
+            }
+          }
+          &  p {
+            &  a {
+              color: rgba($brand_colors-black, 1.0);
+              &:hover, &:focus {
+                border-bottom:2px solid rgba($brand_colors-red, 1.0);
+              }
+            }
+          }
+          &  p {
+            &  span {
+              color:rgba($brand_colors-black, 1.0);
+              font-weight:700;
+              &  a {
+                color:rgba($brand_colors-red, 1.0);
+               &:hover, &:focus {
+                 border-bottom:2px solid rgba($brand_colors-red, 1.0);
+               }
+              }
+            }
+          }
+        }
+      }
+
+    }
+    @media only screen and (max-width: nth($breakpoint,2)){//959px
+      & .ci__wrapper {
+        flex-direction: column;
+      }
+    }
+
+
+    & h2 {
+      padding-bottom:nth($gutter,1);
+      @include font-7b-l;
+      & > span {
+        position: relative;
+        display: inline-block;
+        &:after {
+          @include section-title;
+        }
+      }
+    }
+    @media only screen and (max-width: nth($breakpoint,1)){
+      & h2 {
+        @include font-5b-l;
+      }
+    }
+    @media only screen and (max-width: nth($breakpoint,2)){
+      & h2 {
+        @include font-3b-l;
+        padding-bottom:nth($gutter,2);
+      }
+    }
+    @media only screen and (max-width: nth($breakpoint,3)){
+      & h2 {
+        padding-bottom:nth($gutter,3);
+      }
+    }
+
+  }
+
+
+  .ci__wrapper-element-copy {
+    & p {
+      @include font-3l-l;
+      margin-bottom:nth($gutter,1);
+      &:last-of-type{
+        margin:0;
+      }
+    }
+    & > ul {
+      margin:nth($gutter,1) 0 0 nth($gutter,1);
+      & > li {
+        margin:nth($gutter,1) 0;
+        list-style-type: disc;
+        list-style-position: inside;
+        text-indent: -1em;
+        @include font-3l-l;
+        &:first-child {
+          margin:0;
+        }
+      }
+    }
+    @media only screen and (max-width: nth($breakpoint,1)){
+      & p {
+        @include font-2l-l;
+      }
+      & > ul {
+        & > li {
+          @include font-2l-l;
+          &:last-child {
+            margin:0;
+          }
+        }
+      }
+    }
+    @media only screen and (max-width: nth($breakpoint,2)){
+      & p {
+        margin-bottom:nth($gutter,2);
+      }
+      & > ul {
+        margin:nth($gutter,2) 0 0 nth($gutter,2);
+        & > li {
+          margin:nth($gutter,2) 0;
+        }
+      }
+    }
+    @media only screen and (max-width: nth($breakpoint,3)){
+      & p {
+        margin-bottom:nth($gutter,3);
+      }
+      & > ul {
+        margin:nth($gutter,3) 0 0 nth($gutter,3);
+        & > li {
+          margin:nth($gutter,3) 0;
+        }
+      }
+    }
+
+  }
+
+
+
+  .ci__stat-block {
+    background:$brand_colors-red;
+    float:left;
+    color: rgba($brand_colors-white, 1.0);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > div {
+      text-align:center;
+      padding:27px 28px 53px 28px;
+      & > small {
+         max-width: 100%;
+         @include font-5r-c;
+         line-height:0;
+      }
+      @media only screen and (max-width: nth($breakpoint,1)){
+        & > small {
+          @include font-3r-c;
+          line-height:0;
+        }
+      }
+      & > h3 {
+         max-width: 100%;
+         @include font-9b-c;
+         line-height:0;
+         display:block;
+         margin-top:nth($gutter,1);
+      }
+      @media only screen and (max-width: nth($breakpoint,1)){
+        & > h3 {
+         @include font-6b-c;
+         line-height:0;
+        }
+      }
+      @media only screen and (max-width: nth($breakpoint,2)){
+        & > h3 {
+         @include font-5b-c;
+         line-height:0;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+  // @media only screen and (max-width: nth($breakpoint,3)){
+  //   margin: (nth($header-height,2) + $globalnav-height + nth($gutter,2)) 0 nth($gutter,2) 0;
+  //   & > section{
+  //     width: auto;
+  //     margin: 0 nth($gutter,3) nth($gutter,2) nth($gutter,3);
+  //     &.fullwidth{
+  //       margin: 0 0 nth($gutter,2) 0;
+  //     }
+  //   }
+  // }
+
+
+
+
+
+
+
+}

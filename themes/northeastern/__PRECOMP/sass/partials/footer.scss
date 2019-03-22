@@ -1,0 +1,40 @@
+/**
+ * partials/footer
+ * ---
+ */
+
+ footer{
+   display:none;
+   background: rgba($brand_colors-grayW,1.0);
+   min-height: 50px;
+   flex: none;
+   width: $wrapper-width;
+   padding: nth($gutter,1) nth($gutter,1) nth($gutter,1) nth($gutter,1);
+   margin: 0 0 0 0;
+    clear: both;
+   & > div{
+     float: left;
+     display: block;
+     &.logo{
+        height: 35px;
+        margin: 0 nth($gutter,1) 0 0;
+        & > svg{
+          height: 100%;
+        }
+     }
+   }
+
+
+
+
+
+  @media only screen and (max-width: nth($breakpoint,3)){
+    padding: nth($gutter,2) nth($gutter,3) nth($gutter,2) nth($gutter,3);
+    margin: nth($gutter,2) 0 0 0;
+  }
+
+
+
+
+
+ }

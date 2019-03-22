@@ -1,0 +1,123 @@
+/* ***********************************************************
+## THEME INFORMATION THAT NEEDS TO BE FILLED OUT
+*********************************************************** */
+@import "modules/theme_vars";
+
+
+/* ***********************************************************
+## THEME INFO - SHOULDN'T HAVE TO TO TOUCH THIS
+*********************************************************** */
+@import "modules/theme_info";
+
+/**
+ * styles.scss
+ * ---
+ * Main `sass` file. Import here `sass` files
+ */
+
+// Modules
+@import "modules/normalize";
+@import "modules/variables";
+@import "modules/mixins";
+@import "modules/fonts";
+@import "partials/reset";
+@import "partials/wordpress";
+@import "partials/utils";
+/* global box-sizing */
+*,
+*:after,
+*:before{
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-font-smoothing:antialiased;
+	font-smoothing:antialiased;
+	text-rendering:optimizeLegibility;
+	font-family: "Lato",sans-serif,"Material Icons";
+}
+/* html element 62.5% font-size for REM use */
+html{
+	font-size:62.5%;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	height: 100%;
+}
+body{
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	height: 100%;
+	color: rgba($brand_colors-black,1.0);
+	// display: flex;
+	// flex-direction: column;
+	// min-height:100%;
+
+}
+/* clear */
+.clear:before,
+.clear:after{
+    content:' ';
+    display:table;
+}
+
+.clear:after{
+    clear:both;
+}
+.clear{
+    *zoom:1;
+}
+img{
+	max-width:100%;
+	vertical-align:bottom;
+}
+a{
+	color:#444;
+	text-decoration:none;
+}
+a:hover{
+	color:#444;
+}
+a:focus{
+	outline:0;
+}
+a:hover,
+a:active{
+	outline:0;
+}
+input:focus{
+	outline:0;
+	border:1px solid #04A4CC;
+}
+
+
+
+// Partials
+
+@import "partials/wrapper";
+@import "partials/header";
+@import "partials/nav";
+@import "partials/page";
+@import "pages/homepage";
+@import "pages/heros";
+@import "partials/footer";
+@import "partials/print";
+
+
+
+/*------------------------------------*\
+    MISC
+\*------------------------------------*/
+
+::selection{
+	background:#04A4CC;
+	color:#FFF;
+	text-shadow:none;
+}
+::-webkit-selection{
+	background:#04A4CC;
+	color:#FFF;
+	text-shadow:none;
+}
+::-moz-selection{
+	background:#04A4CC;
+	color:#FFF;
+	text-shadow:none;
+}

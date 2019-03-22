@@ -1,0 +1,13 @@
+/**
+ * partials/wrapper
+ * ---
+ */
+
+
+.wrapper{
+  max-width: $wrapper-width;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}

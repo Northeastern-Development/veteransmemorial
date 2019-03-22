@@ -1,0 +1,47 @@
+/**
+ * modules/variables
+ * ---
+ */
+
+
+/**
+ * Typography
+ */
+
+$font-family-base: 'Lato',sans-serif,'Material Icons';
+$font-size-base: 2.0rem;
+$line-height-base: 3.2rem;
+$font-weight-base: 400;
+
+
+/**
+ * Colors
+ */
+
+$text-color: rgba(0,0,0,1.0);
+$body-bg: rgba(255,255,255,1.0);
+
+$brand_colors-black: rgb(0, 0, 0);                    // black
+$brand_colors-red:   rgb(212,27,44);                  // regular red
+$brand_colors-white: rgb(255, 255, 255);              // white
+$brand_colors-beige: rgb(229, 212, 171);              // beige
+$brand_colors-grayW: rgb(161, 153, 148);              // warm gray 6c
+$brand_colors-metal: rgb(164, 128, 74);               // Metallic C
+
+
+
+
+$content-width-full: 100vw;
+
+$wrapper-width: 100%;
+
+$content-width: 94vw,80vw,65vw,50vw,40vw;
+
+$gutter: 30px,20px,15px,60px,75px,80px;
+
+$header-height: 130px,80px;
+
+$globalnav-height: 44px;
+
+$mobile-nav: 1300px;
+$breakpoint: 1280px,959px,620px;

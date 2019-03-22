@@ -1,0 +1,104 @@
+/**
+ * partials/header
+ * ---
+ */
+
+
+ header{
+   width: $wrapper-width;
+   position: fixed;
+   background: rgba($brand_colors-black,1.0);
+   flex: none;
+   z-index: 1000;
+   border-bottom: solid rgba($brand_colors-grayW,1) 1px;
+   margin-top: $globalnav-height;  // this accounts for the global header, need to move this to the css for the global header
+   height: nth($header-height,2);
+   & > div{
+     width: auto;
+     margin: 0 nth($gutter,1) 0 nth($gutter,1);
+     display: block;
+     height: 100%;
+     position: relative;
+     & > div.logo{
+       margin: 0 0 0 0;
+       width: 30%;
+       height: 100%;
+       position: relative;
+       z-index:10;
+       float:left;
+       & > a{
+         border: none;
+         display: block;
+         height: 100%;
+         & > svg{
+           height: (nth($header-height,2) - (nth($gutter,2) * 2));
+           margin: nth($gutter,2) 0 nth($gutter,2) 0;
+           max-width:300px;
+           width:100%;
+         }
+       }
+     }
+     & > div.mobilenav{
+       display:none;
+       color: rgba($brand_colors-white,0.6);
+       text-align: right;
+       height: 80px;
+       font-size: 1.4rem;
+       font-weight: 400;
+       text-transform: uppercase;
+       line-height: 80px;
+       position:absolute;
+       right: 0;
+       &:after {
+         font-size: 2.0rem;
+         line-height: 3.2rem;
+         text-align: center;
+         line-height: 85px;
+         height: 80px;
+         text-align: center;
+         content: '\E5D2';
+         font-family: 'Material Icons';
+       }
+       &.active {
+         &:after{
+          content: '\E5CD';
+         }
+       }
+     }
+   }
+
+
+   @media only screen and (max-width: $mobile-nav){
+     & > div{
+       div.logo{
+         & > a{
+           & > svg{
+           }
+         }
+       }
+       & > div.mobilenav{
+         display:block;
+         cursor:pointer;
+       }
+     }
+   }
+
+
+
+   @media only screen and (max-width: nth($breakpoint,3)){
+     height: nth($header-height,2);
+     & > div{
+       margin: 0 nth($gutter,3) 0 nth($gutter,3);
+       div.logo{
+         width:60%;
+         & > a{
+           & > svg{
+             height: 40px;
+             margin: 20px 0;
+           }
+         }
+       }
+     }
+   }
+
+ }
