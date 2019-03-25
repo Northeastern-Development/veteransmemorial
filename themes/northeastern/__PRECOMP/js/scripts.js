@@ -24,6 +24,12 @@ var mobileMenu = 1300;
 		 *********************************************************************** */
 
 
+		 //remove all empty href's from vet wall grid
+		 $("ul#memorial > li a[href='']").remove()
+
+
+
+
 
 	// var mainOffset = $('main').offset().top;
 	// var headerOffset = $('.js-nav').offset().top - 220;

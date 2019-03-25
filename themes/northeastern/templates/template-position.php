@@ -15,7 +15,7 @@
         <li>3</li>
         <li>4</li>
       </ul> -->
-      <div style="margin-top:80px;position:relative;">
+      <div style="margin-top:120px;position:relative;">
 			     <?php get_template_part('/loops/loop-veteran-position'); ?>
          </div>
 		</div>

@@ -1,52 +1,52 @@
 <?php
 
   // get all of the staff
-  $args = array(
-    'post_type'       => 'veteran',
-    'posts_per_page'  => -1,
-    'meta_query' => array(
-      'relation' => 'OR',
-      'lastname_clause' => array(
-        'key' => 'veteran_last_name',
-        'compare' => 'EXISTS'
-      )
-    )
-  );
+  // $args = array(
+  //   'post_type'       => 'veteran',
+  //   'posts_per_page'  => -1,
+  //   'meta_query' => array(
+  //     'relation' => 'AND',
+  //     'position_letter' => array(
+  //       'key' => 'memorial_position_letter',
+  //       'compare' => 'EXISTS'
+  //     ),
+  //     'position_number' => array(
+  //       'key' => 'memorial_position_number',
+  //       'compare' => 'EXISTS'
+  //     )
+  //   )
+  // );
+  //
+  // $res = get_posts($args);
 
-  $res = get_posts($args);
 
-  // open memorial grid container
-  // $return_grid_top = '<ul>';
-  //   $format_grid_num = '
-  //   <li>
-  //   %s
-  //   </li>';
-  // $return_grid_top = '<ul>';
-  // echo $return_grid_top;
+  // adds in the numbers on top of the grid
+  echo "<ul class='top-grid'>";
+    $numbers = range(1, 57);
+    foreach ($numbers as $number){
+      echo '<li>'.$number.'</li>';
+    }
+  echo "</ul>";
 
-echo "<ul class='top-grid'>";
-  $numbers = range(1, 57);
-  foreach ($numbers as $number){
-    echo '<li>'.$number.'</li>';
-  }
-echo "</ul>";
+  // adds in the letter on the left side of the grid
+  echo "<ul class='side-grid'>";
+    $letters= range('A', 'G');
+    foreach ($letters as $letter){
+      echo '<li>'.$letter.'</li>';
+    }
+  echo "</ul>";
 
-echo "<ul class='side-grid'>";
-  $letters= range('A', 'G');
-  foreach ($letters as $letter){
-    echo '<li>'.$letter.'</li>';
-  }
-echo "</ul>";
+
+
+
+
 
   $return_grid = '<ul id="memorial">';
 
-
-
   // format string for memorial grid item
-  $format_grid = '
-    <li data-num="%s" data-let="%s" data-pos="%s%s">
-    <a href="%s" title="click here to view this persons tag"></a>
-    </li>';
+  $format_grid = '<li data-num="%s" data-let="%s">
+  <a href="%s"></a>
+  </li>';
 
 
 
@@ -55,8 +55,6 @@ echo "</ul>";
   $cols = 57;
   $rows = 7; // add rows as needed.  if you add a row change the alphabet range too.
   $total = count(range(1, ($cols*$rows))); // int. 399
-
-
 
 
   // loop thru every grid item
@@ -68,27 +66,35 @@ echo "</ul>";
     // get the row letter of this item
     $data_let = $alphabet[floor( ($index) / $cols)];
 
+    // get ONE post that matches the data_num and data_let
+    $args = array(
+      'post_type'       => 'veteran',
+      'posts_per_page'  => 1,
+      'meta_query' => array(
+        'relation' => 'AND',
+        'position_letter' => array(
+          'key' => 'memorial_position_letter',
+          'compare' => '=',
+          'value' => $data_let
+        ),
+        'position_number' => array(
+          'key' => 'memorial_position_number',
+          'compare' => '=',
+          'value' => $data_num
+        )
+      )
+    );
+    $permalink = '';
+    $res = get_posts($args);
+    if( !empty($res) ){
+      $match = $res[0];
+      $permalink = get_permalink($match->ID);
 
-    foreach($res as $rec){
-      $fields = get_fields($rec->ID);
-      //print_r($fields);
-      //$data_pos = ($fields['memorial_position_letter'])&&($fields['memorial_position_number']);
-      //print_r($data_pos);
-
+      //$ma = get_fields($match->ID);
+      //print_r($ma);
+    }else {
 
     }
-
-
-
-
-
-    // if meta query data (memorial_position_letter & memorial_position_number) equals data_let and data_num then i want to echo the permalink in the corresponding href.
-    // if($fields['memorial_position_letter']) == $data_let {
-    // 	echo fadsjkls;
-    // }
-
-
-
 
 
 
@@ -96,20 +102,13 @@ echo "</ul>";
       $format_grid
       ,$data_num
       ,$data_let
-      ,$data_num
-      ,$data_let
-      ,esc_url(get_permalink($rec->ID))
-      ,ucwords(trim($fields['veteran_last_name']))
-      ,ucwords(trim($fields['veteran_first_name']))
-      ,(isset($fields['veteran_middle_initial']) && $fields['veteran_middle_initial'] != ''?' '.ucwords(trim($fields['veteran_middle_initial'])).'.':'')
-      ,ucwords(trim($fields['name_of_conflict_in_which_veteran_lost_his_or_her_life']))
-      ,ucwords(trim($fields['branch_of_service']))
-      ,ucwords(trim($fields['memorial_position_letter']))
-      ,(trim($fields['memorial_position_number']))
+      ,$permalink
+      //,trim($ma['veteran_first_name'])
+      //,trim($ma['veteran_last_name'])
     );
-
-
   }
+
+
 
   // close memorial grid container
   $return_grid .= '</ul>';
