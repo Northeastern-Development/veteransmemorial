@@ -16,7 +16,31 @@
   $res = get_posts($args);
 
   // open memorial grid container
+  // $return_grid_top = '<ul>';
+  //   $format_grid_num = '
+  //   <li>
+  //   %s
+  //   </li>';
+  // $return_grid_top = '<ul>';
+  // echo $return_grid_top;
+
+echo "<ul class='top-grid'>";
+  $numbers = range(1, 57);
+  foreach ($numbers as $number){
+    echo '<li>'.$number.'</li>';
+  }
+echo "</ul>";
+
+echo "<ul class='side-grid'>";
+  $letters= range('A', 'G');
+  foreach ($letters as $letter){
+    echo '<li>'.$letter.'</li>';
+  }
+echo "</ul>";
+
   $return_grid = '<ul id="memorial">';
+
+
 
   // format string for memorial grid item
   $format_grid = '
@@ -24,11 +48,15 @@
     <a href="%s" title="click here to view this persons tag"></a>
     </li>';
 
+
+
   // 0-indexed array of all letters a-z
   $alphabet = range('a', 'g'); // 0 => a,
   $cols = 57;
   $rows = 7; // add rows as needed.  if you add a row change the alphabet range too.
   $total = count(range(1, ($cols*$rows))); // int. 399
+
+
 
 
   // loop thru every grid item
@@ -44,18 +72,13 @@
     foreach($res as $rec){
       $fields = get_fields($rec->ID);
       //print_r($fields);
-      //$content .= sprintf(
-          // esc_url(get_permalink($rec->ID))
-          // ,ucwords(trim($fields['veteran_last_name']))
-          // ,ucwords(trim($fields['veteran_first_name']))
-          // ,(isset($fields['veteran_middle_initial']) && $fields['veteran_middle_initial'] != ''?' '.ucwords(trim($fields['veteran_middle_initial'])).'.':'')
-          // ,ucwords(trim($fields['name_of_conflict_in_which_veteran_lost_his_or_her_life']))
-          // ,ucwords(trim($fields['branch_of_service']))
-          // ,ucwords(trim($fields['memorial_position_letter']))
-          // ,(trim($fields['memorial_position_number']))
-        //);
+      //$data_pos = ($fields['memorial_position_letter'])&&($fields['memorial_position_number']);
+      //print_r($data_pos);
+
 
     }
+
+
 
 
 
@@ -63,6 +86,10 @@
     // if($fields['memorial_position_letter']) == $data_let {
     // 	echo fadsjkls;
     // }
+
+
+
+
 
 
     $return_grid .= sprintf(
@@ -83,6 +110,7 @@
 
 
   }
+
   // close memorial grid container
   $return_grid .= '</ul>';
 
