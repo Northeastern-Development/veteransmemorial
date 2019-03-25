@@ -28,7 +28,7 @@
 					<div class="flex-row" role="columnheader">Year</div>
 					<div class="flex-row" role="columnheader">Memorial Position</div>
 				</div>
-				<?php get_template_part('/includes/hero-list'); ?>
+				<?php get_template_part('/loops/loop-hero-list'); ?>
 			</div>
 
 		</div>
