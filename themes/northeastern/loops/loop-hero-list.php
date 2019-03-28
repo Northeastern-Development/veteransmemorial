@@ -24,12 +24,10 @@ $guide = '<div class="flex-table row" role="rowgroup">
             <div class="flex-row" role="cell">%s%s</div>
           </div>';
 
-//print_r($res);
+
 foreach($res as $rec){
   $fields = get_fields($rec->ID);
 
-  //$fields = get_fields($rec[0]->ID);
-  //print_r($fields);
   $content .= sprintf(
     $guide
     ,esc_url(get_permalink($rec->ID))
