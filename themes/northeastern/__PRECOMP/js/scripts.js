@@ -11,6 +11,18 @@ var mobileMenu = 1300;
 	$(function(){
 
 
+		
+
+
+
+
+
+
+
+
+
+
+
 		/* ***********************************************************************
 
 		Action: Click Event
@@ -24,88 +36,89 @@ var mobileMenu = 1300;
 		 *********************************************************************** */
 
 
-		 //remove all empty href's from vet wall grid
-		 $("ul#memorial > li a[href='']").remove()
+	 //remove all empty href's from vet wall grid
+	 $("ul#memorial > li a[href='']").remove()
 
 
 
 
 
-	// var mainOffset = $('main').offset().top;
-	// var headerOffset = $('.js-nav').offset().top - 220;
-	//
-	// var sections = $('.js-sections')
-  // , nav = $('.js-nav')
-  // , headersHeight = 220
-	// , mobileHeaderHeight = 124
-	//
-	// $(window).on('scroll', function () {
-	//   var cur_pos = $(window).scrollTop();
-	// 	var scrollHeight = $(document).height();
-	// 	var scrollPosition = $(window).height() + cur_pos;
-	// 	if (cur_pos >= headerOffset) {
-	// 		nav.addClass('nav__fixed');
-	// 	}else if ($(window).width() < mobileMenu){
-	// 		nav.addClass('nav__fixed');
-	// 	}else {  //Returns the nav to the initial page load position
-	// 		nav.removeClass('nav__fixed');
-	// 		$('nav.mainnav ul > li > a').removeClass('active');
-	// 	}
-	//
-	//
-	//   sections.each(function() {
-	//     var top = $(this).offset().top - headersHeight,
-	//         bottom = top + $(this).outerHeight();
-	//     if (cur_pos >= top && cur_pos <= bottom) {
-	//       nav.find('a').removeClass('active');
-	//       sections.removeClass('active');
-	//       $(this).addClass('active');
-	//       nav.find('a[href="#'+$(this).attr('id')+'"]').addClass('active');
-	//     }else if((scrollHeight - scrollPosition) / scrollHeight === 0) {	//We've gotten to the bottom so highlight last nav item
-	// 			nav.find('a').removeClass('active');
-	// 			sections.removeClass('active');
-	// 			$('nav.mainnav ul > li#menu-item-154 a').addClass('active');
-	// 			//alert('BOTTOM');
-	// 		}
-	//   });
-	//
-	//
-	// });
-	//
-	// nav.find('a').on('click', function () {
-	// 	$('.js-nav, .main-navigation').toggleClass('open');
-	// 	// console.log(navHeight);
-	//
-	//
-	// 	$('.js-hideshowmobilenav').removeClass('active');//resets hamburger X to start position.
-	// 	$('body').removeClass('noscroll');//enable body scroll
-	//   var $el = $(this)
-	//     , id = $el.attr('href');
-	// 	if ($(window).width() < mobileMenu){//offset is different as we are removing the nav bar and merging it into the header
-	// 		$('html, body').animate({
-	// 	    scrollTop: $(id).offset().top - mobileHeaderHeight
-	// 	  }, 500);
-	// 		return false;
-	// 	}else {
-	// 	  $('html, body').animate({
-	// 	    scrollTop: $(id).offset().top - 215
-	// 	  }, 500);
-	// 		return false;
-	// 	}
-	// 	//removeHash();//removes hash
-	//
-	//
-	// });
 
 
+		//MOBILE NAV CLICK EVENT ON HAMBURGER
+		$('.js-hideshowmobilenav').click(function() {
+			$('nav.mainnav ul').toggleClass('open');
+			$('.js-nav').toggleClass('open');
+			$('.js-hideshowmobilenav').toggleClass('active');//resets hamburger X to start position.
+		});
+
+		if( $('body').hasClass('home') ){
+				// on init / page load
+				$('.neu__slick').on('init reInit', function (e, slick) {
+
+						// get current slide index
+						var current = slick.currentSlide;
+
+						// get data-src attr if available
+						var slideSrc = $(slick.$slides[current]).attr('data-src');
+
+						// if data-src was captured
+						if (slideSrc) {
+								// set href value to data-src value
+								$(slick.$slides[current]).attr('href', slideSrc);
+						}
+
+				});
 
 
-	//MOBILE NAV CLICK EVENT ON HAMBURGER
-	$('.js-hideshowmobilenav').click(function() {
-		$('nav.mainnav ul').toggleClass('open');
-		$('.js-nav').toggleClass('open');
-		$('.js-hideshowmobilenav').toggleClass('active');//resets hamburger X to start position.
-	});
+				// on slide change (after)
+				//
+				$('.neu__slick').on('afterChange', function (e, slick, currentSlide, nextSlide) {
+
+						// remove the href from every slide
+						$(slick.$slides).each(function (slide) {
+								$(this).attr('href', 'javascript:;')
+						});
+
+						// get current slide index
+						var current = slick.currentSlide;
+
+						// get data-src attr if available
+						var slideSrc = $(slick.$slides[current]).attr('data-src');
+
+						// if data-src was captured
+						if (slideSrc) {
+								// set href value to data-src value
+								$(slick.$slides[current]).attr('href', slideSrc);
+						}
+
+				});
+
+				$('.neu__slick').slick({
+						centerMode: true,
+						slidesToShow: 1,
+						focusOnSelect: true,
+						focusOnChange: true,
+						variableWidth: true,
+						arrows: false,
+						responsive: [{
+								breakpoint: 720,
+								settings: {
+										arrows: true
+												// ,appendArrows : $('.neu__slick_item_image')
+												,
+										prevArrow: '<button type="button" class="slick-prev" title="View previous slide" aria-label="View previous slide">Previous</button>',
+										nextArrow: '<button type="button" class="slick-next" title="View next slide" aria-label="View next slide">Next</button>'
+								}
+						}]
+				});
+
+				// refresh on resize (avoid laggy, janky resizing due to slick delaying repaint until after the resize completes)
+				$(window).on('resize', function () {
+						$('.neu__slick')[0].slick.refresh();
+				});
+
+		}
 
 
 

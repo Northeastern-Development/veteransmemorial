@@ -65,7 +65,7 @@ function shapeSpace_check_enum($redirect, $request){
 // Add Actions
 add_action('wp_enqueue_scripts', 'nudev_include_custom_jquery');
 add_action('init', 'northeastern_header_scripts'); // Add Custom Scripts to wp_head
-add_action('wp_print_scripts', 'northeastern_conditional_scripts'); // Add Conditional Page Scripts
+add_action('wp_enqueue_scripts', 'northeastern_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'northeastern_styles'); // Add Theme Stylesheet
 add_action('wp_enqueue_scripts', 'northeastern_conditional_styles'); // Add Conditional PAge Stylesheet(s)

@@ -1,24 +1,5 @@
 <?php
 
-  // get all of the staff
-  // $args = array(
-  //   'post_type'       => 'veteran',
-  //   'posts_per_page'  => -1,
-  //   'meta_query' => array(
-  //     'relation' => 'AND',
-  //     'position_letter' => array(
-  //       'key' => 'memorial_position_letter',
-  //       'compare' => 'EXISTS'
-  //     ),
-  //     'position_number' => array(
-  //       'key' => 'memorial_position_number',
-  //       'compare' => 'EXISTS'
-  //     )
-  //   )
-  // );
-  //
-  // $res = get_posts($args);
-
 
   // adds in the numbers on top of the grid
   echo "<ul class='top-grid'>";

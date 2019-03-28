@@ -42,7 +42,7 @@ get_header();
 										'value' => $searchVal,
 										'compare' => 'LIKE'
 									),
-									'lastname' => array(
+									'lastname_clause' => array(
 										'key' => 'veteran_last_name',
 										'value' => $searchVal,
 										'compare' => 'LIKE'
@@ -51,8 +51,11 @@ get_header();
 										'key' => 'name_of_conflict_in_which_veteran_lost_his_or_her_life',
 										'value' => $searchVal,
 										'compare' => 'LIKE'
-									)
+									),
 							  ),
+								'orderby' => array(
+						        'lastname_clause' => 'ASC',
+						    ),
 				    );
 
 						$search_res = get_posts($search_args);
@@ -106,6 +109,8 @@ get_header();
 					<?php get_template_part('/includes/hero-list'); ?>
 				</tbody>
 			</table> -->
+
+
 			<div class="table-container" role="table" aria-label="Fallen Heros">
 			  <div class="flex-table header" role="rowgroup">
 				  <div class="flex-row first" role="columnheader">Name</div>
