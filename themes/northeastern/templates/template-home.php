@@ -3,7 +3,7 @@
 <main>
 	<!-- section -->
 	<section>
-		<div class="ci__wrapper">
+		<!-- <div class="ci__wrapper"> -->
 			<h1><?php the_title(); ?></h1>
 
 			<?php
@@ -14,9 +14,10 @@
 			    // get fields
 			    $fields = get_fields($post->ID);
 
+
 			    // get the carousel
 			    $res = $fields['carousel'];
-
+					//print_r($res);
 			    // count the carousel slides (for aria)
 			    $num_slides = count($res);
 
@@ -62,7 +63,7 @@
 			                    ? '<a class="neu__slick_item" href="javascript:;" data-src="'.$link_url.'" title="View '.$link_text.' [in new tab/window]" aria-label="'.$link_text.'. Click to view in new tab/window" target="'.$link_target.'">'
 			                    : '<div class="neu__slick_item" >'
 
-			                ,( !empty($rec['image']['url']) ) ? $rec['image']['url'] : ''
+			                ,( !empty($rec['image']['sizes']['home-slider']) ) ? $rec['image']['sizes']['home-slider'] : ''
 
 			                ,( !empty($rec['title']) ) ? '<h4>'.$rec['title'].'</h4>' : ''
 
@@ -100,7 +101,7 @@
 
 
 
-		</div>
+		<!-- </div> -->
 	</section>
 
 </main>
