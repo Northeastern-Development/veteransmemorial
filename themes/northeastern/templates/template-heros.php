@@ -47,11 +47,6 @@ get_header();
 										'value' => $searchVal,
 										'compare' => 'LIKE'
 									),
-									'conflict' => array(
-										'key' => 'name_of_conflict_in_which_veteran_lost_his_or_her_life',
-										'value' => $searchVal,
-										'compare' => 'LIKE'
-									),
 							  ),
 								'orderby' => array(
 						        'lastname_clause' => 'ASC',

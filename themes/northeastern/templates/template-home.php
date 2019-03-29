@@ -1,10 +1,27 @@
-<?php /* Template Name: Home Page Template */ get_header(); ?>
+<?php /* Template Name: Home Page Template */
+
+// $searchVal = '';
+// if(isset($_POST['keyword']) && $_POST['keyword'] != ''){
+// 	$searchVal = $_POST['keyword'];
+// }
+// print_r($_POST['keyword']);
+
+
+ get_header();
+
+ ?>
 
 <main>
 	<!-- section -->
 	<section>
 		<!-- <div class="ci__wrapper"> -->
+
 			<h1><?php the_title(); ?></h1>
+
+			<input type="text" name="keyword" id="keyword" onkeyup="fetch()"></input>
+
+			<div id="datafetch">Search results will appear here</div>
+
 
 			<?php
 			/**

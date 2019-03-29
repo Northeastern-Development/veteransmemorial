@@ -11,7 +11,7 @@
 
   // adds in the letter on the left side of the grid
   echo "<ul class='side-grid'>";
-    $letters= range('A', 'G');
+    $letters= range('A', 'Z');
     foreach ($letters as $letter){
       echo '<li>'.$letter.'</li>';
     }
@@ -25,16 +25,16 @@
   $return_grid = '<ul id="memorial">';
 
   // format string for memorial grid item
-  $format_grid = '<li data-num="%s" data-let="%s">
-  <a href="%s"></a>
+  $format_grid = '<li data-num="%s" data-let="%s" id="%s-%s" class="js__vet">
+  <a href="%s" ></a>
   </li>';
 
 
 
   // 0-indexed array of all letters a-z
-  $alphabet = range('a', 'g'); // 0 => a,
+  $alphabet = range('a', 'z'); // 0 => a,
   $cols = 57;
-  $rows = 7; // add rows as needed.  if you add a row change the alphabet range too.
+  $rows = 26; // add rows as needed.  if you add a row change the alphabet range too.
   $total = count(range(1, ($cols*$rows))); // int. 399
 
 
@@ -83,6 +83,8 @@
       $format_grid
       ,$data_num
       ,$data_let
+      ,$data_let
+      ,$data_num
       ,$permalink
       //,trim($ma['veteran_first_name'])
       //,trim($ma['veteran_last_name'])

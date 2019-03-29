@@ -204,6 +204,11 @@ ul#memorial {
         background:rgba($brand_colors-red, 1.0)!important;
       }
     }
+    &:target {
+      & a {
+        background:rgba($brand_colors-red, 1.0)!important;
+      }
+    }
     // margin:0 1vw 2vw 0;
     // &:nth-child(57n){
     //   margin-right:0;

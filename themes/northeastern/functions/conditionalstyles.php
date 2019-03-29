@@ -8,6 +8,9 @@
       wp_enqueue_style('slickcss');
     }
 
+    wp_register_style('magnific-css', get_template_directory_uri() . '/css/magnific.css', array(), '1.8');
+    wp_enqueue_style('magnific-css');
+
   }
 
 ?>

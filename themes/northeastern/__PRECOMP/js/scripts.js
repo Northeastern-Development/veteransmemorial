@@ -11,7 +11,7 @@ var mobileMenu = 1300;
 	$(function(){
 
 
-		
+
 
 
 
@@ -41,7 +41,20 @@ var mobileMenu = 1300;
 
 
 
-
+	 if( $('.js__vet').length > 0 ){
+			 // Magnific Popup
+			 $(".js__vet").magnificPopup({
+					 // type: "iframe"
+					 type: "ajax",
+					 closeMarkup: '<button title="%title%" aria-label="Close (Esc)" type="button" class="mfp-close">&#215;</button>',
+					 closeOnContentClick: false,
+					 closeOnBgClick: true,
+					 enableEscapeKey: false,
+					 verticalFit: true,
+					 removalDelay: 300,
+					 mainClass: 'mfp-fade'
+			 });
+	 }
 
 
 
