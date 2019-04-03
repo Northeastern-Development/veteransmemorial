@@ -15,6 +15,7 @@
  * Main `sass` file. Import here `sass` files
  */
 
+
 // Modules
 @import "modules/normalize";
 @import "modules/variables";
@@ -98,8 +99,8 @@ input:focus{
 @import "pages/homepage";
 @import "pages/heros";
 @import "partials/footer";
+@import "plugins/wpforms-overrides";
 @import "partials/print";
-
 
 
 /*------------------------------------*\

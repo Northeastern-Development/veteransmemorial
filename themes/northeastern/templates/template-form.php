@@ -6,9 +6,11 @@
 		<div class="ci__wrapper">
 			<h1><?php the_title(); ?></h1>
 
-			<p>Family and friends of service members who have given their lives in service of our country are welcome to add the names of these heroes to Northeastern’s Veterans Memorial. The rear of the memorial includes metal plates representing the dog tags worn by soldiers during war. The plates include the soldier’s name, rank, hometown, birth date, death date, department at Northeastern, and graduation year.</p>
+			<p>If you've lost a loved one or friend in a conflict or war, you are welcome to add the name of your hero to our website. In doing so, you will honor and preserve their story, their life, and their legacy. </p>
 
-			<p>To add a veteran’s name to the memorial, please submit the form below. If you do not know all the information requested, please enter “unknown.”</p>
+			<p>Each name will appear on its own "metal plate" such as the ones found at the Veterans War Memorial on the Northeastern Campus in Boston, MA.</p>
+
+			<p>To add a name, please fill out the form below.</p>
 
 			<p class="error">* Required</p>
 

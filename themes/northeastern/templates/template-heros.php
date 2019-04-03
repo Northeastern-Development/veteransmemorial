@@ -19,8 +19,6 @@ get_header();
 		<div class="ci__wrapper">
 			<h1><?php the_title(); ?></h1>
 
-
-
 			<form role="search" method="POST" id="searchform" action="<?php echo get_permalink(); ?>">
     		<input class="search-input" type="search" name="search" placeholder="<?php _e( 'To search, type and hit enter.', 'northeastern' ); ?>">
     		<button class="search-submit" type="submit" role="button"><?php _e( 'Search', 'northeastern' ); ?></button>
@@ -90,30 +88,29 @@ get_header();
 					//echo $content;
 
 			 ?>
-			<!-- <table>
-				<thead>
-					<tr style="text-align:left;">
-						<th width="300">Name</th>
-						<th width="300">Conflict</th>
-						<th width="300">Branch</th>
-						<th width="300">College</th>
-						<th width="200">Year</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php get_template_part('/includes/hero-list'); ?>
-				</tbody>
-			</table> -->
 
+	</section>
 
+	<section>
+	 <div class="ci__wrapper" style="width:90vw; ">
+
+			<div style="margin-top:120px;position:relative;">
+			 <?php get_template_part('/loops/loop-veteran-position'); ?>
+			</div>
+	 </div>
+ </section>
+
+	<section>
+		<div class="ci__wrapper">
+			<h2> Fallen Heroes List</h2>
 			<div class="table-container" role="table" aria-label="Fallen Heros">
 			  <div class="flex-table header" role="rowgroup">
 				  <div class="flex-row first" role="columnheader">Name</div>
+					<div class="flex-row" role="columnheader">Tag Location</div>
 				  <div class="flex-row" role="columnheader">Conflict</div>
 				  <div class="flex-row" role="columnheader">Branch</div>
 				  <div class="flex-row" role="columnheader">College</div>
 					<div class="flex-row" role="columnheader">Year</div>
-					<div class="flex-row" role="columnheader">Memorial Position</div>
 				</div>
 
 				<?php

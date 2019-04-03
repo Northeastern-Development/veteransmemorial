@@ -90,7 +90,7 @@ var mobileMenu = 1300;
 
 						// remove the href from every slide
 						$(slick.$slides).each(function (slide) {
-								$(this).attr('href', 'javascript:;')
+								$(this).attr('href', 'javascript:void(0);')
 						});
 
 						// get current slide index
@@ -113,7 +113,10 @@ var mobileMenu = 1300;
 						focusOnSelect: true,
 						focusOnChange: true,
 						variableWidth: true,
-						arrows: false,
+						arrows: true,
+						prevArrow: '<button type="button" class="slick-arrow slick-prev" title="View previous slide" aria-label="View previous slide">Previous</button>',
+						nextArrow: '<button type="button" class="slick-arrow slick-next" title="View next slide" aria-label="View next slide">Next</button>',
+
 						responsive: [{
 								breakpoint: 720,
 								settings: {

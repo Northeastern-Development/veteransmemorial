@@ -80,7 +80,9 @@
 			                    ? '<a class="neu__slick_item" href="javascript:;" data-src="'.$link_url.'" title="View '.$link_text.' [in new tab/window]" aria-label="'.$link_text.'. Click to view in new tab/window" target="'.$link_target.'">'
 			                    : '<div class="neu__slick_item" >'
 
-			                ,( !empty($rec['image']['sizes']['home-slider']) ) ? $rec['image']['sizes']['home-slider'] : ''
+			                // ,( !empty($rec['image']['sizes']['home-slider']) ) ? $rec['image']['sizes']['home-slider'] : ''
+
+                      ,( !empty($rec['image']['url']) ) ? $rec['image']['sizes']['home-slider'] : ''
 
 			                ,( !empty($rec['title']) ) ? '<h4>'.$rec['title'].'</h4>' : ''
 

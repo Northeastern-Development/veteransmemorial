@@ -80,6 +80,11 @@
 		<!-- wrapper -->
 		<div class="wrapper">
 
+			<?php
+				if(!is_page_template('templates/template-hero-bio.php'));
+
+			?>
+
 			<!-- header -->
 			<?php if(function_exists("NUML_globalheader")){NUML_globalheader();} ?><header class="header clear" role="banner">
 
@@ -87,7 +92,7 @@
 
 					<!-- logo -->
 					<div class="logo">
-						<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>" aria-label="<?php bloginfo('name'); ?>"><?=get_settings('theme_settings_logosvg')?></a>
+						<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>" aria-label="<?php bloginfo('name'); ?>"><?=get_option('theme_settings_logosvg')?></a>
 					</div>
 					<!-- /logo -->
 

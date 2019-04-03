@@ -23,6 +23,7 @@ require_once(get_template_directory()."/functions/posts.php");
 
 // we need to prevent access to an array of certain pages such as search from the admin side of things
 // add the ajax fetch js
+// shouldn't have to touch this stuff unless you change the id of the form
 add_action( 'wp_footer', 'ajax_fetch' );
 function ajax_fetch() {
 ?>
@@ -51,18 +52,18 @@ function fetch(){
 add_action('wp_ajax_data_fetch' , 'data_fetch');
 add_action('wp_ajax_nopriv_data_fetch','data_fetch');
 function data_fetch(){
-if (  esc_attr( $_POST['keyword'] ) == null ) { die(); }
+if (  esc_attr( $_POST['keyword'] ) == null ) { die(); } // if no keyword then the following won't return results
     $the_query = new WP_Query( array(
       'posts_per_page'  => -1, //or any number
-      'post_status'     => 'publish',
-      'post_type'       => 'veteran',
+      'post_status'     => 'publish', // only published posts will return in results
+      'post_type'       => 'veteran', // name of custom post type
       'meta_query' => array(
         'relation' => 'OR',
         'firstname' => array(
-          'key' => 'veteran_first_name',
-          'value' => $_POST['keyword']
+          'key' => 'veteran_first_name', // i'm only allowing first and last name to be searched.  Feel free to add more
+          'value' => $_POST['keyword'] // grabbing the data from the form as the value here
         ),
-        'lastname_clause' => array(
+        'lastname_clause' => array( // use _clause if you want to be able to order things asc or dsc
           'key' => 'veteran_last_name',
           'value' => $_POST['keyword']
         ),
@@ -75,21 +76,23 @@ if (  esc_attr( $_POST['keyword'] ) == null ) { die(); }
 
 
     $search_res = $the_query->posts;
-
+    // format string for search result item
     $guide = '<ul>
-                <li><a href="%s#%s-%s">%s, %s</a></li>
+                <li><a href="%s#%s-%s">%s, %s %s</a></li>
               </ul>';
 
+    // loop thru search items
     foreach($search_res as $search_rec) {
       $fields = get_fields($search_rec->ID);
       $content .= sprintf(
         $guide
-        //,esc_url(get_permalink($search_rec->ID))
-        ,'http://veteransmemorial.edu/wall-grid/'
-        ,(trim($fields['memorial_position_letter']))
+        //,esc_url(get_permalink($search_rec->ID)) // You could use this line but i needed the link to go to a specific page
+        ,'http://veteransmemorial.edu/fallen-heros' // commnent this out if you use the line above
+        ,(trim($fields['memorial_position_letter'])) // custom fields
         ,(trim($fields['memorial_position_number']))
         ,ucwords(trim($fields['veteran_last_name']))
         ,ucwords(trim($fields['veteran_first_name']))
+        ,(isset($fields['veteran_middle_initial']) && $fields['veteran_middle_initial'] != ''?' '.ucwords(trim($fields['veteran_middle_initial'])).'.':'')
 
       );
     }

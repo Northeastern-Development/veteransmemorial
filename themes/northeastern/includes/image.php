@@ -1,5 +1,5 @@
 <?php
-include_once '../includes/imagettftextblur.php';
+include_once 'imagettftextblur.php';
 
    $jpg_image = imagecreatefrompng('../img/dog-tag.png');
 
@@ -18,7 +18,7 @@ include_once '../includes/imagettftextblur.php';
    $y_conflict_word_shadow = $y_branch_word_shadow + $x_y_gap;
 
    // COLORS https://www.colorhexa.com
-   $dark_gray = imagecolorallocate($jpg_image, 0x55, 0x55, 0x55);//555555
+   $text_white = imagecolorallocate($jpg_image, 0xff, 0xff, 0xff);//555555
    //$very_dark_gray = imagecolorallocate($jpg_image, 0x22, 0x22, 0x22);//222222
    $shadow = imagecolorallocatealpha($jpg_image, 34, 34, 34, 10);//222222
 
@@ -33,23 +33,29 @@ include_once '../includes/imagettftextblur.php';
    $branch = ucwords(trim($_GET['branch']));
    $conflict = ucwords(trim($_GET['conflict']));
 
-   $blur = 3;
+   $blur = 1;
 
-   // the shadow for "name"
-   imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, $y_name_shadow, $shadow, $font_file, $name, $blur);
-   //imagefilter($jpg_image, IMG_FILTER_GAUSSIAN_BLUR);
-   // and the word itself
-   imagettftextblur($jpg_image, $font_size, $angle, $x, $y_name_word_shadow, $dark_gray, $font_file, $name);
 
-   // the shadow for "branch"
-   imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, $y_branch_shadow, $shadow, $font_file, $branch, $blur);
-   // and the word itself
-   imagettftextblur($jpg_image, $font_size, $angle, $x, $y_branch_word_shadow, $dark_gray, $font_file, $branch);
+   // Print Text On Image
+   imagettftext($jpg_image, $font_size, $angle, $x, $y_name_word_shadow, $text_white, $font_file, $name);
+   imagettftext($jpg_image, $font_size, $angle, $x, $y_branch_word_shadow, $text_white, $font_file, $branch);
+   imagettftext($jpg_image, $font_size, $angle, $x, $y_conflict_word_shadow, $text_white, $font_file, $conflict);
 
-   // the shadow for "conflict"
-   imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, $y_conflict_shadow, $shadow, $font_file, $conflict, $blur);
-   // and the word itself
-   imagettftextblur($jpg_image, $font_size, $angle, $x, $y_conflict_word_shadow, $dark_gray, $font_file, $conflict);
+  //  // the shadow for "name"
+  //  imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, $y_name_shadow, $shadow, $font_file, $name, $blur);
+  //  //imagefilter($jpg_image, IMG_FILTER_GAUSSIAN_BLUR);
+  //  // and the word itself
+  //  imagettftextblur($jpg_image, $font_size, $angle, $x, $y_name_word_shadow, $text_white, $font_file, $name);
+   //
+  //  // the shadow for "branch"
+  //  imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, $y_branch_shadow, $shadow, $font_file, $branch, $blur);
+  //  // and the word itself
+  //  imagettftextblur($jpg_image, $font_size, $angle, $x, $y_branch_word_shadow, $text_white, $font_file, $branch);
+   //
+  //  // the shadow for "conflict"
+  //  imagettftextblur($jpg_image, $font_size, $angle, $x_shadow, $y_conflict_shadow, $shadow, $font_file, $conflict, $blur);
+  //  // and the word itself
+  //  imagettftextblur($jpg_image, $font_size, $angle, $x, $y_conflict_word_shadow, $text_white, $font_file, $conflict);
 
    // Output image to the browser
    header('Content-Type: image/png');

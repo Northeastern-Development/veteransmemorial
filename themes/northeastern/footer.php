@@ -2,7 +2,7 @@
 			<footer class="footer" role="contentinfo">
 
 				<!-- small logo -->
-				<div class="logo"><?=get_settings('theme_settings_logosvg')?></div>
+				<div class="logo"><?=get_option('theme_settings_logosvg')?></div>
 				<!-- /small logo -->
 
 				<div>
