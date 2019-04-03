@@ -20,7 +20,7 @@ require_once(get_template_directory()."/functions/shortcodes.php");
 require_once(get_template_directory()."/functions/posts.php");
 
 
-
+//HOME PAGE SEARCH
 // we need to prevent access to an array of certain pages such as search from the admin side of things
 // add the ajax fetch js
 // shouldn't have to touch this stuff unless you change the id of the form
@@ -35,7 +35,7 @@ function fetch(){
         type: 'post',
         data: {
           action: 'data_fetch',
-          keyword: jQuery('#keyword').val()
+          keyword: jQuery('#search-bar').val()
         },
         success: function(data) {
           jQuery('#datafetch').html( data );
@@ -77,14 +77,15 @@ if (  esc_attr( $_POST['keyword'] ) == null ) { die(); } // if no keyword then t
 
     $search_res = $the_query->posts;
     // format string for search result item
-    $guide = '<ul>
-                <li><a href="%s#%s-%s">%s, %s %s</a></li>
-              </ul>';
+
+    $return_grid = '<ul>';
+
+    $guide = '<li><a href="%s#%s-%s">%s, %s %s (%s%s)</a></li>';
 
     // loop thru search items
     foreach($search_res as $search_rec) {
       $fields = get_fields($search_rec->ID);
-      $content .= sprintf(
+      $return_grid .= sprintf(
         $guide
         //,esc_url(get_permalink($search_rec->ID)) // You could use this line but i needed the link to go to a specific page
         ,'http://veteransmemorial.edu/fallen-heros' // commnent this out if you use the line above
@@ -93,15 +94,22 @@ if (  esc_attr( $_POST['keyword'] ) == null ) { die(); } // if no keyword then t
         ,ucwords(trim($fields['veteran_last_name']))
         ,ucwords(trim($fields['veteran_first_name']))
         ,(isset($fields['veteran_middle_initial']) && $fields['veteran_middle_initial'] != ''?' '.ucwords(trim($fields['veteran_middle_initial'])).'.':'')
+        ,(trim($fields['memorial_position_number'])) // custom fields
+        ,ucwords(trim($fields['memorial_position_letter']))
 
       );
     }
 
-
-    echo $content;
+    // close memorial grid container
+    $return_grid .= '</ul>';
+    echo $return_grid;
 
     die();
 }
+
+
+
+
 
 
 /*------------------------------------*\

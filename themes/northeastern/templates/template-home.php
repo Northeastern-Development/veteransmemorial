@@ -13,16 +13,25 @@
 
 <main>
 	<!-- section -->
+  <section>
+    <div class="ci__wrapper">
+      <small>THEIR BRAVERY IS OUR HOPE</small>
+      <h1>Veteran’s War Memorial</h1>
+      <p>The metal plates lining Northeastern’s Veterans Memorial are replicas of the dog tags worn by soldiers. They honor those from our community who have fallen—colleagues, classmates, friends. They are the same metal plates that you can view in person at the Veterans War Memorial on Northeastern’s Neal Finnegan Plaza.</p>
+      <form class="search-container">
+        <div role="search">
+          <input onkeyup="fetch()" type="text" id="search-bar" name="keyword" aria-label="Find a hero" placeholder="Find a hero">
+          <div class="search-icon"></div>
+        </div>
+      </form>
+      <div id="datafetch"></div>
+    </div>
+  </section>
+
+
+
+  <!-- section -->
 	<section>
-		<!-- <div class="ci__wrapper"> -->
-
-			<h1><?php the_title(); ?></h1>
-
-			<input type="text" name="keyword" id="keyword" onkeyup="fetch()"></input>
-
-			<div id="datafetch">Search results will appear here</div>
-
-
 			<?php
 			/**
 			 * Template Partial: Carousel (slider)
@@ -30,7 +39,6 @@
 
 			    // get fields
 			    $fields = get_fields($post->ID);
-
 
 			    // get the carousel
 			    $res = $fields['carousel'];
@@ -112,15 +120,6 @@
 
 			 ?>
 
-
-
-
-
-
-
-
-
-		<!-- </div> -->
 	</section>
 
 </main>

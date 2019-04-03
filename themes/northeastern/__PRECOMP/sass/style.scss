@@ -95,9 +95,11 @@ input:focus{
 @import "partials/wrapper";
 @import "partials/header";
 @import "partials/nav";
+@import "partials/search";
 @import "partials/page";
 @import "pages/homepage";
 @import "pages/heros";
+@import "pages/events";
 @import "partials/footer";
 @import "plugins/wpforms-overrides";
 @import "partials/print";

@@ -2,8 +2,9 @@
 
     // slider section
     section.neu__slider {
+
         text-align: center;
-        width:100%;
+        width: 100%;
         position: relative;
 
         // black background on bottom half of section
@@ -12,7 +13,7 @@
             height: 50%;
             display: inline-block;
             content: '';
-            background-color: rgba($brand_colors-black,1.0);
+            background-color: rgba($brand_colors-darkblue, 1.0);
             position: absolute;
             bottom: 0;
             left: 0;
@@ -61,8 +62,8 @@
             margin: 0 auto;
             margin-bottom: 30px;
             display: inline-block;
-            color: white;
-            border-bottom: 2px solid rgba($brand_colors-red,1.0);
+            color: rgba($brand_colors-white, 1.0);
+            border-bottom: 2px solid rgba($brand_colors-red, 1.0);
             z-index: 10;
             font-weight: 600;
         }
@@ -99,39 +100,35 @@
 
         >h6 {
             font-style: italic;
-            //margin-bottom: nth($gutter,3);
+            margin-bottom: nth($gutter,3);
         }
 
         >p {
-            // @include fontS-14;
+            //@include fontS-14;
         }
     }
-
-    .neu__slick_item.slick-current {
+    .slick-current {
+      .neu__slick_item {
         .neu__slick_item_copy {
             display: block;
         }
+      }
     }
-
-    // .slick-current {
-    //     .neu__slick_item_copy {
-    //         display: block;
-    //     }
-    // }
 
 
     .slick-arrow {
         z-index: 9999;
-        width: 10%;
+        width: calc(25vw - 37px) !important;
         // height: calc(100% - 40px);
-        height: 100%;
+        height: 100% !important;
         opacity: 0;
+        background-color: rgba($brand_colors-red, 1.0) !important;
 
         &:hover,
         &:active,
         &:focus {
-            opacity: 1;
-            background-color: rgba($brand_colors-white,.2);
+            // opacity: 1;
+            // background-color: rgba(255, 255, 255, 0.2);
         }
 
         &:before {
@@ -149,11 +146,11 @@
     }
 
     .slick-next {
-        right: 0;
+        right: 0 !important;
     }
 
     .slick-prev {
-        left: 0;
+        left: 0 !important;
     }
 
 

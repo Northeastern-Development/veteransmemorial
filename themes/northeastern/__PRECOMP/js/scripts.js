@@ -46,7 +46,8 @@ var mobileMenu = 1300;
 			 $(".js__vet").magnificPopup({
 					 // type: "iframe"
 					 type: "ajax",
-					 closeMarkup: '<button title="%title%" aria-label="Close (Esc)" type="button" class="mfp-close">&#215;</button>',
+					 closeMarkup: '<button title="%title%" aria-label="Close (Esc)" type="button" class="mfp-close">CLOSE</button>',
+					 // closeMarkup: '<button title="%title%" aria-label="Close (Esc)" type="button" class="mfp-close">&#215;</button>',
 					 closeOnContentClick: false,
 					 closeOnBgClick: true,
 					 enableEscapeKey: false,
