@@ -35,6 +35,22 @@
 	text-rendering:optimizeLegibility;
 	font-family: "Lato",sans-serif,"Material Icons";
 }
+
+ul.tags * {
+	-moz-box-sizing:content-box;
+	box-sizing:content-box;
+}
+
+body.fallen-heros {
+
+	&:after,
+	&:before{
+		-moz-box-sizing:none !important;
+		box-sizing:none !important;
+
+
+	}
+}
 /* html element 62.5% font-size for REM use */
 html{
 	font-size:62.5%;
@@ -47,9 +63,7 @@ body{
 	padding: 0 0 0 0;
 	height: 100%;
 	color: rgba($brand_colors-black,1.0);
-	// display: flex;
-	// flex-direction: column;
-	// min-height:100%;
+
 
 }
 /* clear */
@@ -77,14 +91,14 @@ a:hover{
 	color:#444;
 }
 a:focus{
-	outline:0;
+	// outline:0;
 }
 a:hover,
 a:active{
-	outline:0;
+	// outline:0;
 }
 input:focus{
-	outline:0;
+	// outline:0;
 	border:1px solid #04A4CC;
 }
 
@@ -98,11 +112,14 @@ input:focus{
 @import "partials/search";
 @import "partials/page";
 @import "pages/homepage";
+@import "pages/about";
 @import "pages/heros";
+@import "pages/addaname";
 @import "pages/events";
 @import "partials/footer";
 @import "plugins/wpforms-overrides";
 @import "partials/print";
+
 
 
 /*------------------------------------*\

@@ -8,11 +8,11 @@
     //  }
 
     if(is_page_template('templates/template-home.php')){
-      wp_register_script('slick', get_template_directory_uri() . '/js/lib/slick-min.js', array('jquery'), '1.8.0', true); // Custom scripts
+      wp_register_script('slick', get_template_directory_uri() . '/js/lib/slick-min.js', array('jquery'), '1.8.0', false); // Custom scripts
       wp_enqueue_script('slick'); // Enqueue it!
 
     }
-    wp_register_script('magnific', get_template_directory_uri() . '/js/lib/jquery.magnific-popup-min.js', array('jquery'), '1.8.0', true); // Custom scripts
+    wp_register_script('magnific', get_template_directory_uri() . '/js/lib/jquery.magnific-popup-min.js', array('jquery'), '1.8.0', false); // Custom scripts
     wp_enqueue_script('magnific'); // Enqueue it!
 
     wp_register_script('northeasternscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts

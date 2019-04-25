@@ -104,7 +104,7 @@
 					<?php include(locate_template('includes/navigation.php')); ?>
 
 					<!-- mobile nav -->
-					<div class="mobilenav js-hideshowmobilenav" title="Show/Hide Main Menu"></div>
+					<div class="mobilenav js-hideshowmobilenav" aria-label="Click here to hide/show mobile nav" title="Show/Hide Main Menu"></div>
 
 
 				</div>

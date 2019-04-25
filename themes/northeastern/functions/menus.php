@@ -18,7 +18,7 @@
       'after'           => '',
       'link_before'     => '',
       'link_after'      => '',
-      'items_wrap'      => '<ul id="%1$s" class="%2$s" role="list">%3$s</ul>',
+      'items_wrap'      => '<ul role="menubar">%3$s</ul>',
       'depth'           => 0,
       'walker'          => new Aria_Walker_Nav_Menu(),
       )
@@ -55,9 +55,18 @@
 
 
 
+  /**
+   * WAI-ARIA Navigation Menu template functions
+   * @see wp-includes/nav-menu-template.php
+   */
+  /**
+   * Create HTML list of nav menu items.
+   *
+   * @since 1.0.0
+   * @uses Walker
+   * @uses Walker_Nav_Menu
+   */
   class Aria_Walker_Nav_Menu extends Walker_Nav_Menu {
-
-
   	/**
   	 * Start the element output.
   	 *
@@ -107,7 +116,7 @@
   			$indent,
   			$id,
   			$class_names,
-  			in_array( 'menu-item-has-children', $item->classes ) ? ' aria-haspopup="true" aria-expanded="false" tabindex="0"' : ''
+  			in_array( 'menu-item-has-children', $item->classes ) ? ' aria-haspopup="true" aria-expanded="false"' : ''
   		);
   		$atts = array();
   		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
@@ -133,7 +142,8 @@
   		 * @param int    $depth Depth of menu item. Used for padding.
   		 */
   		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
-  		$attributes = '';
+  		// $attributes = '';
+          $attributes = '  href="'.$item->url.'" title="View '.$item->attr_title.'" aria-label = "View '.$item->attr_title.'" tabindex="0" role="menuitem"';
   		foreach ( $atts as $attr => $value ) {
   			if ( ! empty( $value ) ) {
   				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
@@ -153,12 +163,8 @@
   		 * @param int    $depth Depth of menu item. Used for padding.
   		 */
   		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
-
-      $attributes = ' target="'.$item->target.'"  href="'.$item->url.'" title="'.$item->attr_title.'" aria-label = "'.$item->attr_title.'" ';
-
-
   		$item_output = $args->before;
-  		$item_output .= '<a'. $attributes .' >';
+  		$item_output .= '<a'. $attributes .'>';
   		$item_output .= $args->link_before . $title . $args->link_after;
   		$item_output .= '</a>';
   		$item_output .= $args->after;
@@ -180,7 +186,4 @@
   	}
   }
 
-
-
-
-?>
+  ?>

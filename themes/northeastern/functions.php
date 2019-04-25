@@ -19,6 +19,37 @@ require_once(get_template_directory()."/functions/comments.php");
 require_once(get_template_directory()."/functions/shortcodes.php");
 require_once(get_template_directory()."/functions/posts.php");
 
+// global $alreadyHere;
+
+$alreadyHere = 'NO';
+//
+// if(is_page_template('templates/template-heros.php')){
+//   $alreadyHere = 'YES';
+// }
+//
+// // print_r($post);
+//
+// echo wp_title();
+
+$url = explode('?', 'http://'.$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+$ID = url_to_postid($url[0]);
+
+// echo $ID;
+
+if($ID == 55){
+
+  // echo $_SERVER["REQUEST_URI"];
+
+  $alreadyHere = 'YES';
+
+}
+
+// echo 'Already Here: '.$alreadyHere;
+
+// die();
+
+// echo 'Already Here: '.$pagename;
+
 
 //HOME PAGE SEARCH
 // we need to prevent access to an array of certain pages such as search from the admin side of things
@@ -26,12 +57,15 @@ require_once(get_template_directory()."/functions/posts.php");
 // shouldn't have to touch this stuff unless you change the id of the form
 add_action( 'wp_footer', 'ajax_fetch' );
 function ajax_fetch() {
+
+  global $alreadyHere;
 ?>
 <script type="text/javascript">
 function fetch(){
 
     jQuery.ajax({
-        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+        // url: '<?php echo admin_url('admin-ajax.php?alreadyhere=false'); ?>',
+        url: '<?php if($alreadyHere == 'YES'){echo admin_url('admin-ajax.php?alreadyhere=true');}else{echo admin_url('admin-ajax.php');} ?>',
         type: 'post',
         data: {
           action: 'data_fetch',
@@ -39,8 +73,11 @@ function fetch(){
         },
         success: function(data) {
           jQuery('#datafetch').html( data );
+
         }
     });
+
+
 
 }
 </script>
@@ -52,6 +89,16 @@ function fetch(){
 add_action('wp_ajax_data_fetch' , 'data_fetch');
 add_action('wp_ajax_nopriv_data_fetch','data_fetch');
 function data_fetch(){
+
+
+  // global $alreadyHere;
+
+  // echo $_SERVER["REQUEST_URI"];
+
+  $testCase = explode("=",$_SERVER["REQUEST_URI"]);
+  // print_r($testCase);
+
+
 if (  esc_attr( $_POST['keyword'] ) == null ) { die(); } // if no keyword then the following won't return results
     $the_query = new WP_Query( array(
       'posts_per_page'  => -1, //or any number
@@ -61,11 +108,13 @@ if (  esc_attr( $_POST['keyword'] ) == null ) { die(); } // if no keyword then t
         'relation' => 'OR',
         'firstname' => array(
           'key' => 'veteran_first_name', // i'm only allowing first and last name to be searched.  Feel free to add more
-          'value' => $_POST['keyword'] // grabbing the data from the form as the value here
+          'value' => $_POST['keyword'],// grabbing the data from the form as the value here
+          "Search","compare"=>"LIKE"
         ),
         'lastname_clause' => array( // use _clause if you want to be able to order things asc or dsc
           'key' => 'veteran_last_name',
-          'value' => $_POST['keyword']
+          'value' => $_POST['keyword'],
+          "Search","compare"=>"LIKE"
         ),
       ),
       'orderby' => array(
@@ -78,9 +127,18 @@ if (  esc_attr( $_POST['keyword'] ) == null ) { die(); } // if no keyword then t
     $search_res = $the_query->posts;
     // format string for search result item
 
+
+    // if(is_page_template('templates/template-heros.php')){
+    //   $alreadyHere = 'YES';
+    // }
+
+
+    // echo 'Already Here: '.$alreadyHere;
+    // die();
+
     $return_grid = '<ul>';
 
-    $guide = '<li><a href="%s#%s-%s">%s, %s %s (%s%s)</a></li>';
+    $guide = '<li><a href="%s#%s-%s"%s>%s, %s %s (%s%s)</a></li>';
 
     // loop thru search items
     foreach($search_res as $search_rec) {
@@ -88,12 +146,15 @@ if (  esc_attr( $_POST['keyword'] ) == null ) { die(); } // if no keyword then t
       $return_grid .= sprintf(
         $guide
         //,esc_url(get_permalink($search_rec->ID)) // You could use this line but i needed the link to go to a specific page
-        ,'http://veteransmemorial.edu/fallen-heros' // commnent this out if you use the line above
+        ,'http://veteransmemorial.edu/fallen-heroes' // commnent this out if you use the line above
+        // ,'https://dev.veteransmemorial.northeastern.edu/fallen-heroes'
         ,(trim($fields['memorial_position_letter'])) // custom fields
         ,(trim($fields['memorial_position_number']))
+        ,($testCase[1] == 'true'?' class="js__noreload"':'')
         ,ucwords(trim($fields['veteran_last_name']))
         ,ucwords(trim($fields['veteran_first_name']))
-        ,(isset($fields['veteran_middle_initial']) && $fields['veteran_middle_initial'] != ''?' '.ucwords(trim($fields['veteran_middle_initial'])).'.':'')
+        // ,(isset($fields['veteran_middle_initial']) && $fields['veteran_middle_initial'] != ''?' '.ucwords(trim($fields['veteran_middle_initial'])).'.':'')
+        ,(isset($fields['veteran_middle_initial']) && $fields['veteran_middle_initial'] != ''?' '.ucwords(trim($fields['veteran_middle_initial'])).'':'')
         ,(trim($fields['memorial_position_number'])) // custom fields
         ,ucwords(trim($fields['memorial_position_letter']))
 
@@ -106,6 +167,74 @@ if (  esc_attr( $_POST['keyword'] ) == null ) { die(); } // if no keyword then t
 
     die();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

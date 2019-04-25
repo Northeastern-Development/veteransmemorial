@@ -2,8 +2,7 @@
  * partials/page
  * ---
  */
- .column {float: left; padding: 10px; width: 100px; border: solid thin red; background-color: green; margin-right: 5px}
-     .box {width: 100%; height: 100px; background-color: white; margin-bottom: 5px; }
+
 
 
 main{
@@ -14,199 +13,228 @@ main{
     overflow: hidden;
     width:100%;
     position:relative;
+    // padding: 0 0 nth($gutter,4) 0;
+    padding:0 0 0 0;
     & .ci__wrapper {
-      // display: flex;
-      // flex-direction: row;
-      // flex-wrap: nowrap;
-      width: nth($content-width,2);
-      padding: nth($gutter,4) 0 nth($gutter,4) 0;
+      width: nth($content-width,3);
       margin:0 auto;
-      &-element {
-        height: auto;
-        margin: 0 0 0 0;
-        position: relative;
-        &-copy {
-          margin:0 0 0 0;
-          & h3 {
-            // margin-top:18px;
-            @include font-5b-l;
-          }
-          @media only screen and (max-width: nth($breakpoint,1)){
-            & h3 {
-              @include font-3b-l;
-            }
-          }
-          &  p {
-            &  a {
-              color: rgba($brand_colors-black, 1.0);
-              &:hover, &:focus {
-                border-bottom:2px solid rgba($brand_colors-red, 1.0);
-              }
-            }
-          }
-          &  p {
-            &  span {
-              color:rgba($brand_colors-black, 1.0);
-              font-weight:700;
-              &  a {
-                color:rgba($brand_colors-red, 1.0);
-               &:hover, &:focus {
-                 border-bottom:2px solid rgba($brand_colors-red, 1.0);
-               }
-              }
-            }
-          }
-        }
-      }
+    }
 
+    h1 {
+      //margin:0 0 nth($gutter,2) 0;
+      margin:6px 0 18px 0;
+      @include font-9b-l;
+      line-height: 4.8rem;
+      // letter-spacing:1.43px;
+    }
+
+    @media only screen and (max-width: nth($breakpoint,1)){//1280px
+      h1 {
+        @include font-6b-l;
+      }
+    }
+
+    @media only screen and (max-width: nth($breakpoint,2)){//959px
+      h1 {
+      // @include font-5b-l;
+      // line-height:2.6rem;
+      font-size: 3.2rem;
+      line-height:3.9rem;
+      }
+    }
+
+    p {
+      margin:0 0 nth($gutter,3) 0;
+      letter-spacing: normal;
+      &:last-child {
+        margin:0;
+      }
     }
     @media only screen and (max-width: nth($breakpoint,2)){//959px
       & .ci__wrapper {
         flex-direction: column;
+        width: nth($content-width,2);
       }
     }
 
+    @media only screen and (max-width: nth($breakpoint,3)){//959px
+      & .ci__wrapper {
 
-    & h2 {
-      padding-bottom:nth($gutter,1);
-      @include font-7b-l;
-      & > span {
-        position: relative;
-        display: inline-block;
-        &:after {
-          @include section-title;
-        }
+        width: 94vw;
       }
+    }
+
+    // & h2 {
+    //   padding-bottom:nth($gutter,1);
+    //   @include font-7b-l;
+    //   & > span {
+    //     position: relative;
+    //     // display: inline-block;
+    //     &:after {
+    //       @include section-title;
+    //     }
+    //   }
+    // }
+    // @media only screen and (max-width: nth($breakpoint,1)){
+    //   & h2 {
+    //     @include font-5b-l;
+    //   }
+    // }
+    // @media only screen and (max-width: nth($breakpoint,2)){
+    //   & h2 {
+    //     @include font-3b-l;
+    //     padding-bottom:nth($gutter,2);
+    //   }
+    // }
+    // @media only screen and (max-width: nth($breakpoint,3)){
+    //   & h2 {
+    //     padding-bottom:nth($gutter,3);
+    //   }
+    // }
+
+    h3 {
+       @include font-20-b;
     }
     @media only screen and (max-width: nth($breakpoint,1)){
-      & h2 {
-        @include font-5b-l;
+    h3 {
+       @include font-6b-c;
       }
     }
     @media only screen and (max-width: nth($breakpoint,2)){
-      & h2 {
-        @include font-3b-l;
-        padding-bottom:nth($gutter,2);
+    h3 {
+       @include font-5b-c;
       }
     }
-    @media only screen and (max-width: nth($breakpoint,3)){
-      & h2 {
-        padding-bottom:nth($gutter,3);
+
+    strong {
+      font-weight:700;
+    }
+
+    p {
+      & > a {
+        color:rgba(45, 110, 175, 1.0);
+        font-weight:700;
+        &:hover,
+        &:focus,
+        &:active{
+          color:rgba(45, 110, 175, 1.0);
+          border-bottom:2px solid rgba(45, 110, 175, 1.0);
+        }
       }
     }
 
   }
 
 
-  .ci__wrapper-element-copy {
-    & p {
-      @include font-3l-l;
-      margin-bottom:nth($gutter,1);
-      &:last-of-type{
-        margin:0;
+
+
+
+
+
+
+
+
+
+  section.head-block-wrapper {
+    width: nth($content-width,3);
+    margin: 0 auto;
+    overflow: visible;
+    & > div.head-block {
+      width: nth($content-width,5);
+      // margin: 0 auto;
+      margin:0;
+      // padding-top:nth($gutter,4);
+      padding-top:72px;
+      & > h1 {
+        line-height:1;
+        margin-bottom:18px;
       }
-    }
-    & > ul {
-      margin:nth($gutter,1) 0 0 nth($gutter,1);
-      & > li {
-        margin:nth($gutter,1) 0;
-        list-style-type: disc;
-        list-style-position: inside;
-        text-indent: -1em;
-        @include font-3l-l;
-        &:first-child {
-          margin:0;
+      & > p {
+        font-weight: 300;
+        margin-bottom:27px;
+        &:last-of-type {
+          margin-bottom: 50px;
         }
       }
-    }
-    @media only screen and (max-width: nth($breakpoint,1)){
-      & p {
-        @include font-2l-l;
+      & > h2 {
+        font-size: 34px;
+        line-height: 48px;
+        font-weight: 300;
+        color: #000;
+        text-align: left;
+        padding-bottom: .5em;
+        margin-bottom: .5em;
+        padding: 0 0 0 30px;
       }
-      & > ul {
-        & > li {
-          @include font-2l-l;
-          &:last-child {
-            margin:0;
+    }
+
+  }
+
+
+
+  @media only screen and (max-width: nth($breakpoint,2)){//959px
+    section.head-block-wrapper {
+      width: nth($content-width,2);
+      margin: 0 auto;
+      & > div.head-block {
+        width: nth($content-width,2);
+        // margin: 0 auto;
+        margin:0;
+        // padding-top:nth($gutter,4);
+        padding-top:72px;
+        & > h1 {
+          line-height:1;
+          margin-bottom:18px;
+        }
+        & > p {
+          font-weight: 300;
+          margin-bottom:27px;
+          &:last-of-type {
+            margin-bottom: 50px;
           }
         }
-      }
-    }
-    @media only screen and (max-width: nth($breakpoint,2)){
-      & p {
-        margin-bottom:nth($gutter,2);
-      }
-      & > ul {
-        margin:nth($gutter,2) 0 0 nth($gutter,2);
-        & > li {
-          margin:nth($gutter,2) 0;
+        & > h2 {
+          font-size: 34px;
+          line-height: 48px;
+          font-weight: 300;
+          color: #000;
+          text-align: left;
+          padding-bottom: .5em;
+          margin-bottom: .5em;
+          padding: 0 0 0 30px;
         }
       }
-    }
-    @media only screen and (max-width: nth($breakpoint,3)){
-      & p {
-        margin-bottom:nth($gutter,3);
-      }
-      & > ul {
-        margin:nth($gutter,3) 0 0 nth($gutter,3);
-        & > li {
-          margin:nth($gutter,3) 0;
-        }
-      }
-    }
 
-  }
-
-
-
-  .ci__stat-block {
-    background:$brand_colors-red;
-    float:left;
-    color: rgba($brand_colors-white, 1.0);
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    & > div {
-      text-align:center;
-      padding:27px 28px 53px 28px;
-      & > small {
-         max-width: 100%;
-         @include font-5r-c;
-         line-height:0;
-      }
-      @media only screen and (max-width: nth($breakpoint,1)){
-        & > small {
-          @include font-3r-c;
-          line-height:0;
-        }
-      }
-      & > h3 {
-         max-width: 100%;
-         @include font-9b-c;
-         line-height:0;
-         display:block;
-         margin-top:nth($gutter,1);
-      }
-      @media only screen and (max-width: nth($breakpoint,1)){
-        & > h3 {
-         @include font-6b-c;
-         line-height:0;
-        }
-      }
-      @media only screen and (max-width: nth($breakpoint,2)){
-        & > h3 {
-         @include font-5b-c;
-         line-height:0;
-        }
-      }
     }
   }
 
 
 
+  @media only screen and (max-width: nth($breakpoint,3)){//620px
+    section.head-block-wrapper {
+      width: 94vw;
 
+      & > div.head-block {
+        width: 94vw;
+        padding-top:48px;
+        & > h1 {
+          font-size:3.2rem;
+          line-height: 3.4rem;
+          margin-bottom:11px;
+        }
+        & > p {
+          margin-bottom:18px;
+          &:last-of-type {
 
+          }
+        }
+        & > h2 {
+
+        }
+      }
+
+    }
+  }
 
 
 

@@ -2,36 +2,23 @@
 
 $fields = get_fields($post->ID);
 //print_r($fields);
+// die();
 // phpinfo();
  ?>
 
 
+<div class="white-popup-block">
 
-<!-- wrapper -->
-<div class="wrapper">
-	<main id="single" role="main" aria-label="Content">
-	<!-- section -->
-		<section>
-		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+  <!-- <div style="background-image: url('<?php bloginfo('template_url'); ?>/img/dogtag-large.png');"></div> -->
+  <!-- <img src="<?php bloginfo('template_url'); ?>/img/dogtag-large.png" alt="<?=$fields['veteran_first_name']?> <?=$fields['veteran_last_name']?> Northeastern University dog tag"> -->
 
-				<div id="ideaoverview">
-					<div>
-						<img src="<?php echo home_url(); ?>/wp-content/themes/northeastern/includes/image.php?firstname=<?=$fields['veteran_first_name']?>&lastname=<?=$fields['veteran_last_name']?>&middlename=<?=$fields['veteran_middle_initial']?>&branch=<?=$fields['branch_of_service']?>&conflict=<?=$fields['name_of_conflict_in_which_veteran_lost_his_or_her_life']?>" alt="<?=$fields['veteran_first_name']?> <?=$fields['veteran_last_name']?> Northeastern University dog tag">
-					</div>
-					
-				</div><!--end ideaoverview-->
+  <div>
 
-			</article>
-			<!-- /article -->
-			<?php endwhile; ?>
-			<?php else: ?>
+      <p class="conflict"><?=$fields['name_of_conflict_in_which_veteran_lost_his_or_her_life']?></p>
+      <p class="date"><?=$fields['years_of_attendance_at_northeastern_or_graduation_year']?></p>
+      <div class="wrap_text"><p class="college"><?=$fields['northeastern_college']?></p></div>
+      <p class="name"><?=$fields['veteran_first_name']?> <?=$fields['veteran_middle_initial']?> <?=$fields['veteran_last_name']?></p>
+    </div>
 
-		<?php endif; ?>
 
-		</section>
-	<!-- /section -->
-	</main>
-
-</div><!--end wrapper-->
+</div>

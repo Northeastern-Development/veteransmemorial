@@ -9,8 +9,8 @@
  */
 
 $font-family-base: 'Lato',sans-serif,'Material Icons';
-$font-size-base: 2.0rem;
-$line-height-base: 3.2rem;
+$font-size-base: 1.6rem;
+$line-height-base: 2.8rem;
 $font-weight-base: 400;
 
 
@@ -28,7 +28,11 @@ $brand_colors-beige: rgb(229, 212, 171);              // beige
 $brand_colors-grayW: rgb(161, 153, 148);              // warm gray 6c
 $brand_colors-metal: rgb(164, 128, 74);               // Metallic C
 $brand_colors-blue:  rgb(0, 110, 181);                // blue
-$brand_colors-darkblue: rgb(56, 87, 117);             // dark blue
+// $brand_colors-darkblue: rgb(56, 87, 117);             // dark blue
+$brand_colors-darkblue: rgb(62, 87, 114);
+$brand_color-taupe: rgb(207, 199, 191);                 // WARM GRAY 2C
+
+
 
 
 
@@ -45,7 +49,7 @@ $header-height: 130px,80px;
 
 $globalnav-height: 44px;
 
-$mobile-nav: 1300px;
+$mobile-nav: 700px;
 $breakpoint: 1280px,959px,620px;
 
 $overlay_darken : linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 70%);

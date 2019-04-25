@@ -7,10 +7,10 @@
  header{
    width: $wrapper-width;
    position: fixed;
-   background: rgba($brand_colors-black,1.0);
+   background: rgba($brand_colors-white,1.0);
    flex: none;
    z-index: 1000;
-   border-bottom: solid rgba($brand_colors-grayW,1) 1px;
+   border-bottom: solid rgba($brand_colors-black,0.1) 1px;
    margin-top: $globalnav-height;  // this accounts for the global header, need to move this to the css for the global header
    height: nth($header-height,2);
    & > div{
@@ -21,7 +21,7 @@
      position: relative;
      & > div.logo{
        margin: 0 0 0 0;
-       width: 30%;
+       // width: 30%;
        height: 100%;
        position: relative;
        z-index:10;
@@ -34,13 +34,21 @@
            height: (nth($header-height,2) - (nth($gutter,2) * 2));
            margin: nth($gutter,2) 0 nth($gutter,2) 0;
            max-width:300px;
-           width:100%;
+           // width:100%;
+         }
+         &:hover,
+         &:focus {
+           svg {
+             path {
+               fill:rgba($brand_colors-red,1.0);
+             }
+           }
          }
        }
      }
      & > div.mobilenav{
        display:none;
-       color: rgba($brand_colors-white,0.6);
+       color: rgba($brand_colors-black,0.6);
        text-align: right;
        height: 80px;
        font-size: 1.4rem;
@@ -90,7 +98,7 @@
      & > div{
        margin: 0 nth($gutter,3) 0 nth($gutter,3);
        div.logo{
-         width:60%;
+         // width:60%;
          & > a{
            & > svg{
              height: 40px;

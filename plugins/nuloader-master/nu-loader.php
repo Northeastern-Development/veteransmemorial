@@ -239,7 +239,7 @@ class NUModuleLoader{
 
   // add in the material icons CSS
   function nu_materialicons(){
-    if(!$debugMode){  // we are not in debug mode
+    if(!$this->debugMode){  // we are not in debug mode
       echo '<link  rel="stylesheet" id="global-font-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/material-icons.css"/>';
     }else{  // we are in debug mode
       echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->debugUrl.'/server/css/material-icons.css" />';

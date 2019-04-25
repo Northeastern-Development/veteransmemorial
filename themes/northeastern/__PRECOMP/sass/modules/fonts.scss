@@ -468,3 +468,48 @@
    line-height: 2.8rem;
    text-align: center;
  }
+
+
+
+
+@mixin font-16-b {
+  font-size: 1.6rem;
+  font-weight:700;
+}
+
+
+ @mixin font-20-b {
+   font-size: 2.0rem;
+   line-height: 4.8rem;
+   font-weight: 700;
+ }
+
+ @mixin font-20-l {
+   font-size: 2.0rem;
+   line-height: 4.8rem;
+   font-weight: 300;
+ }
+
+ @mixin font-24-b {
+   font-size: 2.4rem;
+   line-height: 3.2rem;
+   font-weight: 700;
+ }
+
+ @mixin font-24-l {
+   font-size: 2.4rem;
+   line-height: 3.2rem;
+   font-weight: 300;
+ }
+
+ @mixin font-34-b {
+   font-size: 3.4rem;
+   line-height:4.1rem;
+   font-weight:700;
+ }
+
+ @mixin font-34-l {
+   font-size: 3.4rem;
+   line-height:4.1rem;
+   font-weight:300;
+ }

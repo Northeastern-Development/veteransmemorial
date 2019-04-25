@@ -12,115 +12,110 @@
  ?>
 
 <main>
-	<!-- section -->
-  <section>
-    <div class="ci__wrapper">
-      <small>THEIR BRAVERY IS OUR HOPE</small>
-      <h1>Veteran’s War Memorial</h1>
-      <p>The metal plates lining Northeastern’s Veterans Memorial are replicas of the dog tags worn by soldiers. They honor those from our community who have fallen—colleagues, classmates, friends. They are the same metal plates that you can view in person at the Veterans War Memorial on Northeastern’s Neal Finnegan Plaza.</p>
-      <form class="search-container">
-        <div role="search">
-          <input onkeyup="fetch()" type="text" id="search-bar" name="keyword" aria-label="Find a hero" placeholder="Find a hero">
-          <div class="search-icon"></div>
-        </div>
-      </form>
-      <div id="datafetch"></div>
+  <div class="image" style="background: url('<?php bloginfo('template_url'); ?>/img/home_bg.jpg');" aria-label="veterans memorial wall"></div>
+
+  <section class="home">
+    <div class="head-block">
+      <small>with enduring gratitude to our fallen heroes</small>
+      <h1>Veterans War Memorial</h1>
+      <p>This memorial is dedicated to the people from our Northeastern community who lost their lives in service to our nation during a time of war.</p>
+      <?php get_template_part('/includes/searchform'); ?>
     </div>
   </section>
 
 
 
   <!-- section -->
-	<section>
-			<?php
-			/**
-			 * Template Partial: Carousel (slider)
-			 */
 
-			    // get fields
-			    $fields = get_fields($post->ID);
+  <?php
+  /**
+   * Template Partial: Carousel (slider)
+   */
 
-			    // get the carousel
-			    $res = $fields['carousel'];
-					//print_r($res);
-			    // count the carousel slides (for aria)
-			    $num_slides = count($res);
+      // get fields
+      $fields = get_fields($post->ID);
 
-			    // if we have any slides
-			    if( $num_slides > 0 ){
+      // get the carousel
+      $res = $fields['carousel'];
 
-			        // set the formatting string
-			        $format_slide = '
-			            %s
-			                <div class="neu__slick_item_image" style="background-image: url(%s)" aria-label="the background image">
-			                    %s
-			                </div>
-			                <div class="neu__slick_item_copy">
-			                    %s
-			                    %s
-			                    %s
-			                </div>
-			            %s
-			        ';
+      // count the carousel slides (for aria)
+      $num_slides = count($res);
 
-			        // open the return string
-			        $return_slider = '
-			            <section class="neu__slider">
-			                <h2 tabindex="0"></h2>
-			                <div class="neu__slick" tabindex="0" aria-label="Carousel with '.$num_slides.' items.">
-			        ';
+      // if we have any slides
+      if( $num_slides > 0 ){
 
-			        // loop thru carousel rows
-			        foreach($res as $i => $rec){
+          // set the formatting string
+          $format_slide = '
+              %s
+                  <div class="neu__slick_item_image neu__bgimg">
+                      <div class="neu__bgimg-img-slider" style="background-image: url(%s)" aria-label="the background image"></div>
+                      %s
+                  </div>
+                  <div class="neu__slick_item_copy">
+                      <div>
+                          %s
+                          %s
+                      </div>
+                      <div>
+                          %s
+                      </div>
+                  </div>
+              %s
+          ';
 
-			            // if external_url set, get link attributes
-			            if( !empty($rec['external_url']['url']) ){
-			                $link_url = ( !empty($rec['external_url']['url']) ) ? $rec['external_url']['url'] : '';
-			                $link_target = ( !empty($rec['external_url']['target']) ) ? $rec['external_url']['target'] : '';
-			                $link_text = ( !empty($rec['external_url']['title']) ) ? $rec['external_url']['title'] : '';
-			            }
+          // open the return string
+          $return_slider = '
+              <section class="neu__slider">
 
-			            // write the return string
-			            $return_slider .= sprintf(
-			                $format_slide
+                  <div class="neu__slick" tabindex="0" aria-label="Carousel with '.$num_slides.' items.">
+          ';
 
-			                ,( !empty($link_url) )
-			                    ? '<a class="neu__slick_item" href="javascript:;" data-src="'.$link_url.'" title="View '.$link_text.' [in new tab/window]" aria-label="'.$link_text.'. Click to view in new tab/window" target="'.$link_target.'">'
-			                    : '<div class="neu__slick_item" >'
+          // loop thru carousel rows
+          foreach($res as $i => $rec){
+              $label = '';
 
-			                // ,( !empty($rec['image']['sizes']['home-slider']) ) ? $rec['image']['sizes']['home-slider'] : ''
+              $link_url = ( !empty($rec['external_url']['url']) ) ? $rec['external_url']['url'] : '';
+              $link_target = ( !empty($rec['external_url']['target']) ) ? $rec['external_url']['target'] : '';
+              $label = ( !empty($rec['external_url']['target']) ? 'Learn more about '.$rec['title'] . ' [will open in new tab/window]' : 'Learn more about '.$rec['title'] );
 
-                      ,( !empty($rec['image']['url']) ) ? $rec['image']['sizes']['home-slider'] : ''
+              // write the return string
+              $return_slider .= sprintf(
+                  $format_slide
 
-			                ,( !empty($rec['title']) ) ? '<h4>'.$rec['title'].'</h4>' : ''
+                  ,( !empty($link_url) )
+                      ? '<a class="neu__slick_item" href="javascript:void(0);" data-src="'.$link_url.'" title="'.$label.'" aria-label="'.$label.'" target="'.$link_target.'">'
+                      : '<div class="neu__slick_item" aria-label="The '.$rec['title'].' slide">'
 
-			                ,( !empty($rec['author']) ) ? '<h4>'.$rec['author'].'</h4>' : ''
+                  ,( !empty($rec['image']['url']) ) ? $rec['image']['url'] : ''
 
-			                ,( !empty($rec['position']) ) ? '<h6>'.$rec['position'].'</h6>' : ''
+                  ,( !empty($rec['title']) ) ? '<h4><span>'.$rec['title'].'</span></h4>' : ''
 
-			                ,( !empty($rec['details']) ) ? wpautop($rec['details']) : ''
+                  ,( !empty($rec['author']) ) ? '<h4>'.$rec['author'].'</h4>' : ''
 
-			                ,( !empty($link_url) ) ? '</a>' : '</div>'
-			            );
-			        }
+                  ,( !empty($rec['position']) ) ? '<p>'.$rec['position'].'</p>' : ''
 
-			        // close the return string
-			        $return_slider .= '
-			                </div>
-			            </section>
-			        ';
+                  ,( !empty($rec['details']) ) ? str_replace(array('<p>', '</p>'),array('<p><span>', '</span></p>'), $rec['details']) : ''
 
-			        // echo the return string to the template
-			        echo $return_slider;
+                  ,( !empty($link_url) ) ? '</a>' : '</div>'
+              );
+          }
 
-			    }
-			    else {
-			        // there are no slides!
-			    }
+          // close the return string
+          $return_slider .= '
+                  </div>
+              </section>
+          ';
 
-			 ?>
+          // echo the return string to the template
+          echo $return_slider;
 
-	</section>
+      }
+      else {
+          // there are no slides!
+      }
+
+   ?>
+
 
 </main>
 
